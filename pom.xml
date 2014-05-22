@@ -1,0 +1,95 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>me.zhenchuan</groupId>
+  <artifactId>RocketMQClient</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>RocketMQClient</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.10</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.alibaba.rocketmq</groupId>
+    	<artifactId>rocketmq-client</artifactId>
+    	<version>3.0.9</version>
+    </dependency>
+    
+    <dependency>
+    	<groupId>com.google.guava</groupId>
+    	<artifactId>guava</artifactId>
+    	<version>11.0.2</version>
+    </dependency>
+    
+	<dependency>
+		<groupId>joda-time</groupId>
+		<artifactId>joda-time</artifactId>
+		<version>2.3</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.ning</groupId>
+		<artifactId>compress-lzf</artifactId>
+		<version>1.0.1</version>
+	</dependency>
+    
+    <dependency>
+    	<groupId>com.leansoft</groupId>
+    	<artifactId>bigqueue</artifactId>
+    	<version>0.7.0</version>
+    </dependency>
+    
+    <dependency>
+        <groupId>org.skife.config</groupId>
+        <artifactId>config-magic</artifactId>
+        <version>0.9</version>
+    </dependency>
+    
+  </dependencies>
+  
+   	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+
+			<plugin><!-- mvn assembly:assembly -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<appendAssemblyId>false</appendAssemblyId>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+	
+	<repositories>
+		<repository>
+  			<id>github.release.repo</id>
+  			<url>https://raw.github.com/bulldog2011/bulldog-repo/master/repo/releases/</url>
+		</repository>
+	</repositories>
+  
+</project>
