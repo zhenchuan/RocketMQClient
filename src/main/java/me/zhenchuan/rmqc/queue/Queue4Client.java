@@ -21,14 +21,14 @@ public class Queue4Client {
 
     
     public Queue4Client(ClientConfig config) {
-        if (config.getAsyncQueueType().equals("memory")) {
-            queue = new MemoryQueue4Sink(config.getAsyncMemoryQueueCapacity());
+        if (config.asyncQueueType().equals("memory")) {
+            queue = new MemoryQueue4Sink(config.asyncMemoryQueueCapacity());
         } else {
             try {
                 queue = new FileQueue4Sink(
-                        config.getAsyncFileQueuePath(),
-                        config.getAsyncFileQueueName(),
-                        config.getAsyncFileQueueGCPeriod());
+                        config.asyncFileQueuePath(),
+                        config.asyncFileQueueName(),
+                        config.asyncFileQueueGCPeriod());
             } catch (IOException e) {
                 logger.error("Exception on initializing Queue4Client: " + e.getMessage(), e);
             }

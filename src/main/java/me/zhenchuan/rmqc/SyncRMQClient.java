@@ -32,7 +32,7 @@ public class SyncRMQClient implements IRMQClient{
 	public SyncRMQClient(ClientConfig config) throws MQClientException{
         this.config = config;
         this.compression = Compression.create(config.getCompression());
-        this.producer = new DefaultMQProducer(config.getApp());
+        this.producer = new DefaultMQProducer(config.app());
         this.producer.start();
 	}
 	
@@ -48,7 +48,7 @@ public class SyncRMQClient implements IRMQClient{
         boolean sent = false;
         boolean retried = false;
 
-        for (int i = 0; i < config.getRetryCount(); ++i) {
+        for (int i = 0; i < config.retryCount(); ++i) {
             try {
             	SendResult sendResult = producer.send(message);
             	if(sendResult.getSendStatus() == SendStatus.SEND_OK){

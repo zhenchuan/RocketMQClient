@@ -53,7 +53,7 @@ public class MessageSetBuilder {
 
 
             return new TMessageSet(
-                    config.getApp(),
+                    config.app(),
                     messageList.size(),
                     (byte) compression.getId(),
                     crc,

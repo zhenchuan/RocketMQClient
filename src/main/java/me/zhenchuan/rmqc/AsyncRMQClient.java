@@ -56,12 +56,12 @@ public class AsyncRMQClient implements IRMQClient {
 		poller.execute(createPoller());
 
 		this.jobQueue = new ArrayBlockingQueue<Runnable>(
-				config.getAsyncJobQueueCapacity());
+				config.asyncJobQueueCapacity());
 
 		this.rateLimiter = new RateLimiter(mesPerSec);
 
-		this.senders = new ThreadPoolExecutor(config.getAsyncSenderThreads(),
-				config.getAsyncSenderThreads(), 10, TimeUnit.SECONDS, jobQueue,
+		this.senders = new ThreadPoolExecutor(config.asyncSenderThreads(),
+				config.asyncSenderThreads(), 10, TimeUnit.SECONDS, jobQueue,
 				new RejectedExecutionHandler() {
 					@Override
 					public void rejectedExecution(Runnable r,
@@ -99,11 +99,11 @@ public class AsyncRMQClient implements IRMQClient {
 							builder.withMessage(msg.getRoutingKey(),
 									msg.getPayload());
 							builder.drainFrom(messageQueue,
-									config.getAsyncBatchSize() - builder.size());
+									config.asyncBatchSize() - builder.size());
 						}
 
 						boolean full = (builder.size() >= config
-								.getAsyncBatchSize());
+								.asyncBatchSize());
 						if ((expired || full) && builder.size() > 0) {
 							lastBatch = System.currentTimeMillis();
 							rateLimiter.pause(builder.size());

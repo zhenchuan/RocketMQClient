@@ -32,7 +32,7 @@ public class AsyncRMQSender implements Runnable {
         this.client = client;
         this.config = config;
         this.messageSet = tMessageSet;
-        this.producer = new DefaultMQProducer(config.getApp());
+        this.producer = new DefaultMQProducer(config.app());
         this.producer.start();
     }
 
@@ -40,8 +40,8 @@ public class AsyncRMQSender implements Runnable {
         boolean sent = false;
         boolean retried = false;
         long startTS = System.currentTimeMillis();
-        Message message = messageSet.toRocketMQMessage(config.getTopic());
-        for (int i = 0; i < config.getRetryCount(); ++i) {
+        Message message = messageSet.toRocketMQMessage(config.topic());
+        for (int i = 0; i < config.retryCount(); ++i) {
             try {
             	SendResult sendResult = producer.send(message);
             	if(sendResult.getSendStatus() == SendStatus.SEND_OK){
