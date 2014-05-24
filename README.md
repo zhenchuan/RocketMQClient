@@ -20,6 +20,7 @@ kafka的实现方式为本地内存维护一个队列,异步的过程就是把�
 
 #Note
 本client的目的是即使broker挂掉,依然可以hold住大量的数据.对主服务不产生(或较小)影响
+
 注意升级你的broker的处理能力!!!
 
 #配置
@@ -88,4 +89,12 @@ public interface ClientConfig {
 	
 }
 
+#用法
 
+    Properties properties = new Properties();
+    //properties.put("client.type", "async");
+    //properties.put("async.queue.type", "file");
+
+	RMQClient client = new RMQClient(properties);
+	Message message = new Message("routekey","hello world".getBytes());
+    client.send(message);
