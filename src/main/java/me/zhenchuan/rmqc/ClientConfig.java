@@ -1,64 +1,69 @@
 package me.zhenchuan.rmqc;
 
-public class ClientConfig {
+import org.skife.config.Config;
+import org.skife.config.Default;
 
-	public String getAsyncQueueType() {
-		return null;
-	}
+public interface ClientConfig {
 
-	public int getAsyncMemoryQueueCapacity() {
-		return 0;
-	}
+	@Config("client.type")
+	@Default("sync")
+	public String clientType();
+	
+	@Config("async.queue.type")
+	@Default("memory")
+	public String getAsyncQueueType() ;
 
-	public String getAsyncFileQueuePath() {
-		return null;
-	}
+	@Config("async.memory.queue.capacity")
+	@Default("100000")
+	public int getAsyncMemoryQueueCapacity() ;
 
-	public String getAsyncFileQueueName() {
-		return null;
-	}
+	@Config("async.filequeue.path")
+	public String getAsyncFileQueuePath() ;
 
-	public String getAsyncFileQueueGCPeriod() {
-		return null;
-	}
+	@Config("async.filequeue.name")
+	public String getAsyncFileQueueName() ;
 
-	public int getAsyncJobQueueCapacity() {
-		return 0;
-	}
+	@Config("async.filequeue.gcperid")
+	@Default("PT1h")
+	public String getAsyncFileQueueGCPeriod() ;
+
+	@Config("async.jobqueue.capacity")
+	public int getAsyncJobQueueCapacity();
 	/****
 	 * 异步发送使用的线程数.
 	 * @return
 	 */
-	public int getAsyncSenderThreads() {
-		return 0;
-	}
+	@Config("async.sender.threads")
+	public int getAsyncSenderThreads() ;
 
-	public int getRetryCount() {
-		return 0;
-	}
+	@Config("retry.count")
+	@Default("5")
+	public int getRetryCount() ;
 
-	public String getApp() {
-		return null;
-	}
+	@Config("app")
+	@Default("defaultApp")
+	public String getApp() ;
 
-	public int getCompression() {
-		return 0;
-	}
+	@Config("compression")
+	@Default("0")
+	public int getCompression() ;
 
-	public long getAsyncTimeout() {
-		return 0;
-	}
+	@Config("async.timeout")
+	public long getAsyncTimeout();
+	
 	/****
 	 * 批量发送的message的个数...
 	 * @return
 	 */
-	public int getAsyncBatchSize() {
-		return 0;
-	}
+	@Config("async.batchsize")
+	public int getAsyncBatchSize() ;
 
-	public String getTopic() {
-		return null;
-	}
+	@Config("topic")
+	public String getTopic();
+	
+	@Config("message.per.second")
+	@Default("10000000000")
+	public int msgPerSec();
 	
 	
 

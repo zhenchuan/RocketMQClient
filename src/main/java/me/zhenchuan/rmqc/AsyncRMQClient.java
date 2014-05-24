@@ -42,6 +42,10 @@ public class AsyncRMQClient implements IRMQClient {
 			.newSingleThreadExecutor(new ThreadFactoryBuilder().setNameFormat(
 					"AsyncRMQClientPoller-%d").build());
 
+	public AsyncRMQClient(ClientConfig config){
+		this(config,new Queue4Client(config),config.msgPerSec());
+	}
+	
 	public AsyncRMQClient(ClientConfig config, Queue4Client messageQueue,
 			int mesPerSec) {
 		this.config = config;
